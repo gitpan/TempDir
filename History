@@ -1,0 +1,40 @@
+09/15/1999 version 1.1
+The name of the module  is changed: TempDir
+Added a new tempdir check method for Windows 32 OS
+sub find_win_temp_dir(){
+        for ($ENV{TEMP}, $ENV{TMP},
+                        $ENV{windir} . '\\temp', 'c:\\temp', '.')
+        { return $_ if $_ and -d and -r _ and -w _ }
+        die "Can't find a temp directory\n";
+}
+[Markus Laker mailto:laker@tcp.co.uk]
+similar to unix OS
+sub find_unix_temp_dir(){
+        for ($ENV{TMPDIR}, '/var/tmp", "/usr/tmp", '/tmp', '.')
+        { return $_ if $_ and -d and -r _ and -w _ }
+        die "Can't find a temp directory\n";
+}
+Added BeOS support  [David Cantrell mailto:david@wirestation.co.uk]
+  /tmp, which is a symlink to /boot/var/tmp.
+  It's probably a good idea to use /tmp though in case it changes in the future.
+  Does it support $ENV{'TEMP'} ? Not sure.
+This is the new list of the UNIX OS
+  aix bsd386 dec_osf dgux freebsd hp_osf1 hpux irix linux mips_osf1
+  netbsd next sco sco_xenix solaris sunos svr4 sysv ultrix uts
+  I've received this message, help me make complete the list of sure UNIX OS.
+  Here are the "osname"s that I found in perl's Configure script:
+    aix apollo bsd386 dcosx dec_osf dgux dnix dynix dynixptx esix fps
+    freebsd genix hp_osf1 hpux irix isc linux lynxos machten minix mips
+    mips_osf1 netbsd newsos newsos4 next os2 powerux qnx sco sco_xenix
+    solaris sunos svr4 sysv titanos ultrix umips unicos unicosmk uts
+  The ones which I am sure are "unix" systems are:
+    aix bsd386 dec_osf dgux freebsd hp_osf1 hpux irix linux mips_osf1
+    netbsd next sco sco_xenix solaris sunos svr4 sysv ultrix uts
+  I also suspect that these are "unix", but I'm not certain:
+    dcosx dnix dynix dynixptx esix fps genix isc lynxos machten
+    minix mips newsos newsos4 powerux qnx titanos umips unicos  unicosmk
+  I'm completely uncertain about "apollo" (is that their "Domain" OS?).
+    And "os2" is right out.
+
+09/01/1999 version 1.0
+First public release

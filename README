@@ -1,0 +1,47 @@
+TempDir - Module to check the correct temporary directory in every OS supported by PERL
+
+What's the problem?
+Every PERL tool use temporary files.
+If you want your code can be simply portable on different OS, you need to select
+the correct temporary directory.
+The purpose of this module is to check the correct temporary directory in every
+OS supported by PERL to use it.
+We need your help.
+We ask you to send us the correct tempory directory for every OS supported by
+PERL and to suggest us good modifies (<sanface@sanface.com>).
+
+At the moment this is the list of OS supported and the list of variables and
+directories the module check to find the correct to use:
+Windows 32 bit ('95, '98, NT)
+$ENV{TEMP}, $ENV{TMP}, $ENV{windir} . '\\temp', 'c:\\temp', '.'
+
+Unix
+  [aix bsd386 dec_osf dgux freebsd hp_osf1 hpux irix linux mips_osf1 netbsd next
+   sco sco_xenix solaris sunos svr4 sysv ultrix uts]
+$ENV{TMPDIR}, '/var/tmp', '/usr/tmp', '/tmp', '.'
+
+Mac                           :desktop folder:temp
+OpenVMS                       /sys\$scratch (or SYS\$SCRATCH)
+beos                          /tmp
+# BeOS    [from David Cantrell mailto:david@wirestation.co.uk]
+# /tmp, which is a symlink to /boot/var/tmp.
+# It's probably a good idea to use /tmp though in case it changes in the future.
+# Does it support $ENV{'TEMP'} ?
+# Not sure
+
+If the module can't recognize your OS the temporary directory is set to .
+
+Use testtmpdir.pl to test the module on your OS and testOS.pl to know the value
+of $^O PERL variable on your OS.
+
+Copyright 1999, SANFACE Software
+
+This module is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+
+Availability
+
+The latest version of this library is likely to be available from:
+http://www.sanface.com
+and at any CPAN mirror ( http://www.perl.com/CPAN/authors/id/S/SA/SANFACE/ )
+
