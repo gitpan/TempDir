@@ -1,3 +1,10 @@
+09/30/1999 version 1.2
+Correct Mac support [Chris Nandor mailto:pudge@pobox.com]
+The default Mac OS directory can be found with the FindFolder toolbox function
+use Mac::Files;
+$tmp = FindFolder(kOnSystemDisk,kTemporaryFolderType);
+However, MacPerl automatically assigns this directory to $ENV{TMPDIR}.
+
 09/15/1999 version 1.1
 The name of the module  is changed: TempDir
 Added a new tempdir check method for Windows 32 OS

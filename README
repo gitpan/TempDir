@@ -20,8 +20,15 @@ Unix
    sco sco_xenix solaris sunos svr4 sysv ultrix uts]
 $ENV{TMPDIR}, '/var/tmp', '/usr/tmp', '/tmp', '.'
 
-Mac                           :desktop folder:temp
+Mac                           $ENV{TMPDIR}
+The default Mac OS directory can be found with the FindFolder toolbox function
+use Mac::Files;
+$tmp = FindFolder(kOnSystemDisk,kTemporaryFolderType);
+However, MacPerl automatically assigns this directory to $ENV{TMPDIR}.
+[from Chris Nandor mailto:pudge@pobox.com]
+
 OpenVMS                       /sys\$scratch (or SYS\$SCRATCH)
+
 beos                          /tmp
 # BeOS    [from David Cantrell mailto:david@wirestation.co.uk]
 # /tmp, which is a symlink to /boot/var/tmp.
@@ -45,3 +52,14 @@ The latest version of this library is likely to be available from:
 http://www.sanface.com
 and at any CPAN mirror ( http://www.perl.com/CPAN/authors/id/S/SA/SANFACE/ )
 
+A lot of users notify me that:
+the File::Spec module included in perl 5.6 (almost in beta) will include
+a tmpdir function/method.  This code works now with perl 5.005_61.
+  use File::Spec::Functions 'tmpdir';
+  my $tmpdir = tmpdir();
+
+Does this module require perl 5.6?
+Can I install it with other perl version?
+Where can I find it?
+
+If it supports all PERL 5.xxx version we'll stop the develop of TempDir module.

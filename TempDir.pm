@@ -1,5 +1,5 @@
 #
-# TempDir.pm, version 1.1 15 September 1999
+# TempDir.pm, version 1.2 30 September 1999
 #
 # Copyright (c) 1999 SANFACE Software
 # mailto:sanface@sanface.com
@@ -12,7 +12,7 @@ package TempDir;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = "1.1";
+$VERSION = "1.2";
 
 sub new
   {
@@ -44,8 +44,8 @@ sub new
       elsif ($^O =~ /^uts$/i)           {$tempdir=&find_unix_temp_dir}
       elsif ($^O =~ /^solaris$/i)       {$tempdir=&find_unix_temp_dir}
 
-# Mac
-      elsif ($^O =~ /^MacOS$/i)     {$tempdir=":desktop folder:temp"}
+# Mac     [from Chris Nandor mailto:pudge@pobox.com]
+      elsif ($^O =~ /^MacOS$/i)     {$tempdir=$ENV{TMPDIR}}
 
 # BeOS    [from David Cantrell mailto:david@wirestation.co.uk]
       elsif ($^O =~ /beos/)          {$tempdir="/tmp"}
@@ -115,7 +115,7 @@ Unix
    sco sco_xenix solaris sunos svr4 sysv ultrix uts]
 $ENV{TMPDIR}, '/var/tmp', '/usr/tmp', '/tmp', '.'
 
-Mac                           :desktop folder:temp
+Mac                           $ENV{TMPDIR}
 OpenVMS                       /sys\$scratch (or SYS\$SCRATCH)
 beos                          /tmp
 
